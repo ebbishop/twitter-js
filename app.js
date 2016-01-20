@@ -1,29 +1,32 @@
 var express = require('express');
+var swig = require('swig');
+
 var app = express();
 
+//reset defaults
+app.engine('html', swig.renderFile); //app.engine is a function
+app.set('view engine', 'html'); //this updates or creates properties on the app.settings object
+app.set('views', __dirname + '/views');
+
+//turn off default caching
+swig.setDefaults({cache: false});
+
 app.use(function(request, response, next){
-	// console.log(request.method, request.path, response.statusCode); // how does this get the statusCode here, from the route below? it doesn't
 	next(); //only strictly necessary between pieces of middleware
 });
-app.get('/easteregg/', function(request,response, next){
-	response.send('you found the easter egg!!');
-	next();
-});
+
+var sampleObj = {
+	title: "First run template",
+	people: [
+		{name: 'Gandalf'},
+		{name: 'Frodo'},
+		{name: 'Hermione'}
+	]
+};
 
 app.get('/', function(request, response, next){
-	// response.status(200);
-	response.send('Routing!');
-	next();
-});
+	response.render('index', sampleObj);
 
-app.get('/index/', function(request, response, next){
-	// response.status(200);
-	response.send('Routing to ' + request.path);
-	next();
-});
-
-app.use(function(request, response, next){
-	console.log(request.path, response.statusCode);
 });
 
 app.listen(3000);
