@@ -20,3 +20,4 @@ module.exports = {
 	find: find
 };
 
+module.exports.add('Harry Potter', 'I will get you, Voldemort #chosenone');

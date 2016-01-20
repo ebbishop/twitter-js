@@ -15,7 +15,11 @@
     
       <!-- display tweets here -->
       {% for tweet in tweets %}
-        <li>{{tweet.text}}</li>
+      <div>
+        <img class='user-photo' src={{'/images/' + tweet.name|replace(' ', '_')+ '.png'}} >
+        <h4>{{tweet.name}}</h4>
+        <p>{{tweet.text}}</p>
+      </div>
       {% endfor %}
       
     </div>
