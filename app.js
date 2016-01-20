@@ -1,32 +1,20 @@
 var express = require('express');
 var swig = require('swig');
-
 var app = express();
+var routes = require('./routes/');
 
 //reset defaults
 app.engine('html', swig.renderFile); //app.engine is a function
 app.set('view engine', 'html'); //this updates or creates properties on the app.settings object
 app.set('views', __dirname + '/views');
-
 //turn off default caching
 swig.setDefaults({cache: false});
 
-app.use(function(request, response, next){
-	next(); //only strictly necessary between pieces of middleware
-});
+// everything in public will be loaded using its path
+app.use(express.static('public'));
 
-var sampleObj = {
-	title: "First run template",
-	people: [
-		{name: 'Gandalf'},
-		{name: 'Frodo'},
-		{name: 'Hermione'}
-	]
-};
+app.use('/', routes);
 
-app.get('/', function(request, response, next){
-	response.render('index', sampleObj);
-
-});
+app.use('/stylesheets', routes)
 
 app.listen(3000);
