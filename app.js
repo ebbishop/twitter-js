@@ -3,6 +3,7 @@ var swig = require('swig');
 var app = express();
 var routes = require('./routes/');
 var bodyParser = require('body-parser');
+var socketio = require('socket.io');
 
 //reset defaults
 app.engine('html', swig.renderFile); //app.engine is a function
@@ -19,7 +20,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(bodyParser.json());
 
-app.use('/', routes);
+app.use('/', routes(io) );
 
 
-app.listen(3000);
+var server = app.listen(3000);
+var io = socketio.listen(server);
+

@@ -1,38 +1,42 @@
 var express = require('express');
-var router = express.Router();
-var tweetBank = require('../tweetBank');
-var bodyParser = require('body-parser');
 
-router.get('/', function(request, response, next) {
-	var tweets = tweetBank.list();
-	response.render('index', { title: 'Twitter.js', tweets: tweets, showForm: true})
-});
+module.exports = function(io) {
+	var router = express.Router();
+	var tweetBank = require('../tweetBank');
 
-router.get('/users/:id', function(request, response, next){
-	var id = '@' + request.params.id;
-	var list = tweetBank.find({'id': id});
-	var name = list[0].name;
-	response.render('index', {title: 'Twitter.js - Posts by ' + name, name: name, id: id, tweets: list, showForm: true})
-});
+	router.get('/', function(request, response, next) {
+		var tweets = tweetBank.list();
+		response.render('index', { title: 'Twitter.js', tweets: tweets, showForm: true})
+	});
 
-router.get('/tweet/:tweetid', function(request,response,next){
-	var tweetid = request.params.tweetid;
-	var list = tweetBank.find({'tweetid': tweetid});
-	if(list.length>0){
-		response.render('index', {title: 'Twitter.js - Tweet #' + tweetid, tweets: list});
-	}else{
-		response.render('index', {title: 'Invalid tweet id', tweets:[]});
-	}
-});
+	router.get('/users/:id', function(request, response, next){
+		var id = '@' + request.params.id;
+		var list = tweetBank.find({'id': id});
+		var name = list[0].name;
+		response.render('index', {title: 'Twitter.js - Posts by ' + name, name: name, id: id, tweets: list, showForm: true})
+	});
 
-router.post('/tweets', function(request, response, next){
-	console.log('inside post handler ', request.body);
-	var id = request.body.id;
-	var name = request.body.name;
-	var text = request.body.text;
-	tweetBank.add(id, name, text);
-	response.redirect('/');
+	router.get('/tweet/:tweetid', function(request,response,next){
+		var tweetid = request.params.tweetid;
+		var list = tweetBank.find({'tweetid': tweetid});
+		if(list.length>0){
+			response.render('index', {title: 'Twitter.js - Tweet #' + tweetid, tweets: list});
+		}else{
+			response.render('index', {title: 'Invalid tweet id', tweets:[]});
+		}
+	});
 
-})
+	router.post('/tweets', function(request, response, next){
+		console.log('inside post handler ', request.body);
+		var id = request.body.id;
+		var name = request.body.name;
+		var text = request.body.text;
+		tweetBank.add(id, name, text);
+		response.redirect('/');
 
-module.exports = router;
+	})
+
+	io.socket.emit('new_tweet', {} );
+
+ 	return router;
+ }
