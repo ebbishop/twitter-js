@@ -65,3 +65,9 @@ img.user-photo{
 div.tweet{
   min-height: 75px;
 }
+.tweet p a{
+  color: black;
+}
+.tweet p a:hover{
+  text-decoration: none;
+}

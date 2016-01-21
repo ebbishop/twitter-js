@@ -25,7 +25,7 @@ module.exports = {
 	find: find
 };
 
-module.exports.add('@hermioneg', 'Hermione Granger', 'Go read a book @Harry Potter');
+module.exports.add('@hermioneg', 'Hermione Granger', 'Go read a book @theharry');
 module.exports.add('@theharry', 'Harry Potter', 'I will get you, Voldemort #chosenone');
-module.exports.add('@theharry', 'Harry Potter','Draco is a weenie #chosenone');
-module.exports.add('@malfoy', 'Draco Malfoy', 'Slytherine rocks!!! #chosenone');
+module.exports.add('@theharry', 'Harry Potter','@malfoy is a weenie #chosenone');
+module.exports.add('@malfoy', 'Draco Malfoy', 'Slytherin rocks!!!');
