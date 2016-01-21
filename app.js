@@ -15,7 +15,6 @@ swig.setDefaults({cache: false});
 app.use(express.static('public'));
 
 app.use('/', routes);
-// app.use()
-// app.use('/stylesheets', routes)
+// app.use('/users/', routes);
 
 app.listen(3000);

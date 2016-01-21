@@ -2,8 +2,8 @@ var _ = require('lodash');
 
 var data = [];
 
-function add(name, text) {
-	data.push({ name: name, text: text });
+function add(id, name, text) {
+	data.push({ id: id, name: name, text: text});
 }
 
 function list() {
@@ -20,4 +20,7 @@ module.exports = {
 	find: find
 };
 
-module.exports.add('Harry Potter', 'I will get you, Voldemort #chosenone');
+module.exports.add('@hermioneg', 'Hermione Granger', 'Go read a book @Harry Potter');
+module.exports.add('@theharry', 'Harry Potter', 'I will get you, Voldemort #chosenone');
+module.exports.add('@theharry', 'Harry Potter','Draco is a weenie #chosenone');
+module.exports.add('@malfoy', 'Draco Malfoy', 'Slytherine rocks!!! #chosenone');
