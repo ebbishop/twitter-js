@@ -12,12 +12,12 @@
       100 followers
       {% if showForm %}
         <form action="/tweets" method="POST">
-          <label for='id_field'>User ID:</label>
-          <input name='id' type="text" id="id_field" />
+          <label for='id_field'>Tweet as:</label>
+          <input name='id' type="text" id="id_field" value="{% if id %}{{id}}{% endif %}"/>
           <label for='name_field'>Name:</label>
-          <input name='name' type="text" id="name_field" />
+          <input name='name' type="text" id="name_field" value="{% if name %}{{name}}{% endif %}"/>
           <label for="text_field">What do you want to say?</label>
-          <input name="text" type="text" id="text_field" style="width: 350px;"/>
+          <input name="text" type="text" id="text_field"/>
           <input type="submit" value="Submit"/>
         </form>
       {% endif %}

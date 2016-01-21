@@ -71,3 +71,17 @@ div.tweet{
 .tweet p a:hover{
   text-decoration: none;
 }
+
+input {
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding: 0 0 0 2px;
+}
+
+input[name=text] {
+  height: 60px;
+}
+
+form {
+  margin: 20px 0 0 0;
+}

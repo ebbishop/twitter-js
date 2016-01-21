@@ -12,7 +12,7 @@ router.get('/users/:id', function(request, response, next){
 	var id = '@' + request.params.id;
 	var list = tweetBank.find({'id': id});
 	var name = list[0].name;
-	response.render('index', {title: 'Twitter.js - Posts by ' + name, id: id, tweets: list, showForm: true})
+	response.render('index', {title: 'Twitter.js - Posts by ' + name, name: name, id: id, tweets: list, showForm: true})
 });
 
 router.get('/tweet/:tweetid', function(request,response,next){
