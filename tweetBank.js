@@ -1,9 +1,9 @@
 var _ = require('lodash');
 
 var data = [];
-
+var tweetCount = 0;
 function add(id, name, text) {
-	data.push({ id: id, name: name, text: text});
+	data.push({ id: id, name: name, text: text, tweetid: getTweetID()});
 }
 
 function list() {
@@ -12,6 +12,11 @@ function list() {
 
 function find(properties) {
 	return _.cloneDeep(_.filter(data, properties));
+}
+
+function getTweetID(){
+	tweetCount++;
+	return tweetCount.toString();
 }
 
 module.exports = {

@@ -16,9 +16,9 @@
       <!-- display tweets here -->
       {% for tweet in tweets %}
       <div class='tweet'>
-        <img class='user-photo' src={{'/images/' + tweet.id|replace('@', '')+ '.png'}} >
-        <h4>{{tweet.name}}<small>{{tweet.id}}</small></h4>
-        <p>{{tweet.text}}</p>
+        <img class='user-photo' src='/images/{{tweet.id|replace("@", "")}}.png'>
+        <h4>{{tweet.name}}<small><a href='/users/{{tweet.id|replace("@","")}}'>{{tweet.id}}</a></small></h4>
+        <p><a href="/tweet/{{tweet.tweetid}}">{{tweet.text}}</a></p>
       </div>
       {% endfor %}
       
