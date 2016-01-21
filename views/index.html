@@ -3,7 +3,7 @@
 {% block content %}
   
   <div class="page-header">
-    <h1>Welcome to Twitter.js!</h1>
+    <h1>{{title}}{% if id %}<small>{{id}}</small>{% endif %}</h1>
   </div>
   <div class="row">
     <div class="col-md-3">
@@ -15,9 +15,9 @@
     
       <!-- display tweets here -->
       {% for tweet in tweets %}
-      <div>
-        <img class='user-photo' src={{'/images/' + tweet.name|replace(' ', '_')+ '.png'}} >
-        <h4>{{tweet.name}}</h4>
+      <div class='tweet'>
+        <img class='user-photo' src={{'/images/' + tweet.id|replace('@', '')+ '.png'}} >
+        <h4>{{tweet.name}}<small>{{tweet.id}}</small></h4>
         <p>{{tweet.text}}</p>
       </div>
       {% endfor %}
