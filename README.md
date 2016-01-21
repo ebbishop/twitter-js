@@ -7,7 +7,7 @@ To install and run the app:
   1. Run `node app.js` in your terminal
   2. Navigate to http://localhost:3000 in your browser.
 
-Workshop created by @ebbishop and @paloobi for Grace Hopper Academy
+Workshop created by [Emma Bishop](http://www.github.com/ebbishop) and [Alexandra Polubiec](http://www.github.com/paloobi) for Grace Hopper Academy
 
 ## Features
 
