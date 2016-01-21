@@ -2,6 +2,7 @@ var express = require('express');
 var swig = require('swig');
 var app = express();
 var routes = require('./routes/');
+var bodyParser = require('body-parser');
 
 //reset defaults
 app.engine('html', swig.renderFile); //app.engine is a function
@@ -14,7 +15,11 @@ swig.setDefaults({cache: false});
 // everything in public will be loaded using its path
 app.use(express.static('public'));
 
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(bodyParser.json());
+
 app.use('/', routes);
-// app.use('/users/', routes);
+
 
 app.listen(3000);
