@@ -13,6 +13,7 @@ app.set('views', __dirname + '/views');
 swig.setDefaults({cache: false});
 
 // everything in public will be loaded using its path
+// using public as the static path because all views are simply rendered directly?
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({extended: false}));
