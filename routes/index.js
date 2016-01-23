@@ -31,12 +31,13 @@ module.exports = function(io) {
 		var id = request.body.id;
 		var name = request.body.name;
 		var text = request.body.text;
-		tweetBank.add(id, name, text);
+		var newTweet = tweetBank.add(id, name, text);
+		io.socket.emit('new_tweet', newTweet);
 		response.redirect('/');
 
 	})
 
-	io.socket.emit('new_tweet', {} );
+	
 
  	return router;
  }

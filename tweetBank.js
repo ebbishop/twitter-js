@@ -4,6 +4,7 @@ var data = [];
 var tweetCount = 0;
 function add(id, name, text) {
 	data.push({ id: id, name: name, text: text, tweetid: getTweetID()});
+  return _.clone(data[data.length - 1]);
 }
 
 function list() {

@@ -13,6 +13,9 @@ app.set('views', __dirname + '/views');
 //turn off default caching
 swig.setDefaults({cache: false});
 
+var server = app.listen(3000);
+var io = socketio.listen(server);
+
 // everything in public will be loaded using its path
 app.use(express.static('public'));
 
@@ -23,6 +26,5 @@ app.use(bodyParser.json());
 app.use('/', routes(io) );
 
 
-var server = app.listen(3000);
-var io = socketio.listen(server);
+
 
